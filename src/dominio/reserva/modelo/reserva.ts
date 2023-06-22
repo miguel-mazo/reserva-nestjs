@@ -1,32 +1,67 @@
 import { Cliente } from "src/dominio/cliente/modelo/cliente";
 import { EstadoReserva } from "src/infraestructura/reserva/entidad/estado-reserva";
 
+const VALOR_ALQUILER_ENTRE_SEMANA = 100;
+const VALOR_ALQUILER_SABADO = 120;
+const VALOR_ALQUILER_DOMINGO = 130;
+
 export class Reserva {
-    readonly #cliente: Cliente;
-    readonly #fechaReserva: Date;
-    readonly #valorAlquiler: number;
-    readonly #estado: EstadoReserva;
+    private id: number;
+    private idCliente: number;
+    private fechaReserva: Date;
+    private valorAlquiler: number;
+    private estado: EstadoReserva;
 
-    constructor(cliente: Cliente, fechaReserva: Date, valorAlquiler: number, estado: EstadoReserva){
-        this.#cliente = cliente;
-        this.#fechaReserva = fechaReserva;
-        this.#valorAlquiler = valorAlquiler;
-        this.#estado = estado;
+    constructor(id?:number, idCliente?: number, fechaReserva?: string, valorAlquiler?: number, estado?: EstadoReserva){
+
+        if(id === null && idCliente !== null && fechaReserva !== null && valorAlquiler === null && estado === null) {
+            this.idCliente = idCliente;
+            this.fechaReserva = new Date(fechaReserva);
+            this.aplicarValorAlquiler();
+            this.estado = EstadoReserva.ACTIVA;
+        }
+
+        if(id !== null && idCliente !== null && fechaReserva !== null && valorAlquiler !== null && estado !== null) {
+            this.id = id;
+            this.idCliente = idCliente;
+            this.fechaReserva = new Date(fechaReserva);
+            this.valorAlquiler = valorAlquiler;
+            this.estado = estado;
+        }
     }
 
-    get cliente(): Cliente {
-        return this.#cliente;
+    private aplicarValorAlquiler(): void {
+        switch (this.fechaReserva.getDay()) {
+          case 6: // Saturday
+            this.valorAlquiler = VALOR_ALQUILER_SABADO;
+            break;
+      
+          case 0: // Sunday
+            this.valorAlquiler = VALOR_ALQUILER_DOMINGO;
+            break;
+      
+          default:
+            this.valorAlquiler = VALOR_ALQUILER_ENTRE_SEMANA;
+        }
+      }
+
+    get getId(): number {
+        return this.id;
     }
 
-    get fechaReserva(): Date {
-        return this.#fechaReserva;
+    get getIdCliente(): number {
+        return this.idCliente;
     }
 
-    get valorAlquiler(): number {
-        return this.#valorAlquiler;
+    get getFechaReserva(): Date {
+        return this.fechaReserva;
     }
 
-    get estado(): EstadoReserva {
-        return this.#estado;
+    get getValorAlquiler(): number {
+        return this.valorAlquiler;
+    }
+
+    get getEstado(): EstadoReserva {
+        return this.estado;
     }
 }
