@@ -1,7 +1,7 @@
 import { Controller, Get, Param, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ReservaDto } from "src/aplicacion/reserva/consulta/dto/reserva.dto";
-import { ManejadorConsultarReserva } from "src/aplicacion/reserva/consultar-reserva-id.manejador";
-import { ManejadorListarReservas } from "src/aplicacion/reserva/listar-reservas.manejador";
+import { ManejadorConsultarReserva } from "src/aplicacion/reserva/consulta/consultar-reserva-id.manejador";
+import { ManejadorListarReservas } from "src/aplicacion/reserva/consulta/listar-reservas.manejador";
 
 @Controller('reservas')
 export class ReservaControlador{

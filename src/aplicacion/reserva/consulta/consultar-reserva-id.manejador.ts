@@ -1,5 +1,5 @@
 import { RepositorioReserva } from "src/dominio/reserva/puerto/repositorio/repositorio-reserva";
-import { ReservaDto } from "./consulta/dto/reserva.dto";
+import { ReservaDto } from "./dto/reserva.dto";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
