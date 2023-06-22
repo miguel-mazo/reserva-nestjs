@@ -8,7 +8,7 @@ export class ReservaEntidad {
   id: number;
 
   @Column()
-  cliente: Cliente;
+  idCliente: number;
 
   @Column()
   fechaReserva: Date;
@@ -17,5 +17,5 @@ export class ReservaEntidad {
   valorAlquiler: number;
 
   @Column()
-  estado: EstadoReserva;
+  estado: string;
 }

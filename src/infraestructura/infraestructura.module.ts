@@ -9,6 +9,7 @@ import { NodeEnv } from './configuracion/environment/env-node.enum';
 import { databaseConfigFactory } from './configuracion/database.config';
 import { dataSourceOptions } from './configuracion/data-source';
 import { ClienteModule } from './cliente/cliente.module';
+import { ReservaModule } from './reserva/reserva.module';
 
 @Module({
   providers: [AppLogger],
@@ -24,7 +25,8 @@ import { ClienteModule } from './cliente/cliente.module';
       }),
     }),
     UsuarioModule,
-    ClienteModule
+    ClienteModule,
+    ReservaModule
         //ClienteModule,
   ],
 })
