@@ -3,7 +3,7 @@ import { RepositorioCliente } from "src/dominio/cliente/puerto/repositorio/repos
 import { ClienteEntidad } from "../../entidad/cliente.entidad";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { ClienteDto } from "src/aplicacion/cliente/consulta/cliente.dto";
+import { ClienteDto } from "src/aplicacion/cliente/consulta/dto/cliente.dto";
 
 @Injectable()
 export class RepositorioClienteMysql implements RepositorioCliente {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { DaoCliente } from 'src/dominio/cliente/puerto/dao/dao-cliente';
-import { ClienteDto } from './consulta/cliente.dto';
+import { ClienteDto } from './consulta/dto/cliente.dto';
 
 @Injectable()
 export class ManejadorListarCliente {

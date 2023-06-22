@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ManejadorListarCliente } from 'src/aplicacion/cliente/listar-cliente.manejador';
-import { ClienteDto } from 'src/aplicacion/cliente/consulta/cliente.dto';
+import { ClienteDto } from 'src/aplicacion/cliente/consulta/dto/cliente.dto';
 import { ManejadorConsultarCliente } from 'src/aplicacion/cliente/consultar-cliente-id.manejador';
 
 @Controller('clientes')

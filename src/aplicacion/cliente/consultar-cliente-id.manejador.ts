@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ClienteDto } from './consulta/cliente.dto';
+import { ClienteDto } from './consulta/dto/cliente.dto';
 import { RepositorioCliente } from 'src/dominio/cliente/puerto/repositorio/repositorio-cliente';
 
 @Injectable()
