@@ -1,3 +1,4 @@
+import { ComandoActualizarReserva } from "src/aplicacion/reserva/comando/actualizar-reserva.comando";
 import { EstadoReserva } from "src/infraestructura/reserva/entidad/estado-reserva";
 
 const VALOR_ALQUILER_ENTRE_SEMANA = 100;
@@ -46,6 +47,11 @@ export class Reserva {
 
     cancelar(): void {
         this.estado = EstadoReserva.CANCELADA;
+    }
+
+    actualizar(comandoActualizarReserva: ComandoActualizarReserva):void {
+        this.fechaReserva = new Date(comandoActualizarReserva.nuevaFecha);
+        this.aplicarValorAlquiler();
     }
 
     get getId(): number {

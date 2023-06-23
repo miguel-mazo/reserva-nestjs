@@ -6,6 +6,8 @@ import { ManejadorRegistrarReserva } from "src/aplicacion/reserva/comando/regist
 import { ComandoRegistrarReserva } from "src/aplicacion/reserva/comando/registrar-reserva.comando";
 import { ComandoCancelarReserva } from "src/aplicacion/reserva/comando/cancelar-reserva.comando";
 import { ManejadorCancelarReserva } from "src/aplicacion/reserva/comando/cancelar-reserva.manejador";
+import { ComandoActualizarReserva } from "src/aplicacion/reserva/comando/actualizar-reserva.comando";
+import { ManejadorActualizarReserva } from "src/aplicacion/reserva/comando/actualizar-reserva-manejador";
 
 @Controller('reservas')
 export class ReservaControlador{
@@ -15,6 +17,7 @@ export class ReservaControlador{
         private readonly _manejadorConsultarReserva: ManejadorConsultarReserva,
         private readonly _manejadorRegistrarReserva: ManejadorRegistrarReserva,
         private readonly _manejadorCancelarReserva: ManejadorCancelarReserva,
+        private readonly _manejadorActualizarReserva: ManejadorActualizarReserva,
     ) {}
 
     @Post()
@@ -27,6 +30,12 @@ export class ReservaControlador{
     @UsePipes(new ValidationPipe({ transform: true }))
     async cancelar(@Param('id') id: number) {
         await this._manejadorCancelarReserva.ejecutar(new ComandoCancelarReserva(id));
+    }
+
+    @Post('/actualizar')
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async actualizar(@Body() comandoActualizarReserva: ComandoActualizarReserva) {
+        await this._manejadorActualizarReserva.ejecutar(comandoActualizarReserva);
     }
 
     @Get('/:id')

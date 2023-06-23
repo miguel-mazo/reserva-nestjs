@@ -39,5 +39,12 @@ export class RepositorioReservaMysql implements RepositorioReserva {
         return this.repositorio.query(query);
     }
 
+    async actualizarReserva(reserva: Reserva) {
+
+        const query = "update reserva set fechaReserva = '" + reserva.getFechaReserva.toISOString() + "' , valorAlquiler = " + reserva.getValorAlquiler + " where id =" + reserva.getId;
+
+        return this.repositorio.query(query);
+    }
+
 
 }
