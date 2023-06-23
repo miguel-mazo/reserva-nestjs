@@ -10,20 +10,27 @@ import { ManejadorRegistrarReserva } from "src/aplicacion/reserva/comando/regist
 import { RepositorioReserva } from "src/dominio/reserva/puerto/repositorio/repositorio-reserva";
 import { ServicioRegistrarReserva } from "src/dominio/reserva/servicio/servicio-registrar-reserva";
 import { servicioRegistrarReservaProveedor } from "./servicio/servicio-registrar-reserva.proveedor";
+import { ServicioCancelarReserva } from "src/dominio/reserva/servicio/servicio-cancelar-reserva";
+import { servicioCancelarReservaProveedor } from "./servicio/servicio-cancelar-reserva.proveedor";
+import { ManejadorCancelarReserva } from "src/aplicacion/reserva/comando/cancelar-reserva.manejador";
 
 @Module({
     imports: [TypeOrmModule.forFeature([ReservaEntidad])],
     providers: [
         { provide: ServicioRegistrarReserva, inject: [RepositorioReserva], useFactory: servicioRegistrarReservaProveedor },
+        { provide: ServicioCancelarReserva, inject: [RepositorioReserva], useFactory: servicioCancelarReservaProveedor },
         daoReservaProvider,
         repositorioReservaProvider,
         ManejadorRegistrarReserva,
+        ManejadorCancelarReserva,
         ManejadorListarReservas,
         ManejadorConsultarReserva,
     ],
     exports: [
         ServicioRegistrarReserva,
+        ServicioCancelarReserva,
         ManejadorRegistrarReserva,
+        ManejadorCancelarReserva,
         ManejadorListarReservas,
         ManejadorConsultarReserva,
         RepositorioReserva,

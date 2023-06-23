@@ -14,10 +14,13 @@ export class RepositorioReservaMysql implements RepositorioReserva {
         private readonly repositorio: Repository<ReservaEntidad>,
     ) {}
 
-    async obtenerReserva(id: number): Promise<ReservaDto> {
-        return this.repositorio.query(
+    async obtenerReserva(id: number): Promise<Reserva> {
+
+        const reservaBaseDatos = await this.repositorio.query(
             'select  R.id, R.idCliente, C.nombre, R.fechaReserva, R.valorAlquiler, R.estado from reserva R inner join cliente C on R.idCliente = C.id where R.id =' + id
         );
+
+        return new Reserva(reservaBaseDatos[0].id, reservaBaseDatos[0].idCliente, reservaBaseDatos[0].fechaReserva, reservaBaseDatos[0].valorAlquiler, reservaBaseDatos[0].estado);
     }
 
     async reservar(reserva: Reserva) {
@@ -27,6 +30,13 @@ export class RepositorioReservaMysql implements RepositorioReserva {
         entidad.valorAlquiler = reserva.getValorAlquiler;
         entidad.estado = reserva.getEstado;
         await this.repositorio.save(entidad);
+    }
+
+    async cancelarReserva(reserva: Reserva): Promise<Reserva> {
+
+        const query = "update reserva set estado = '" + reserva.getEstado + "' where id =" + reserva.getId
+
+        return this.repositorio.query(query);
     }
 
 

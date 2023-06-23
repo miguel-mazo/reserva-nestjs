@@ -1,4 +1,3 @@
-import { Cliente } from "src/dominio/cliente/modelo/cliente";
 import { EstadoReserva } from "src/infraestructura/reserva/entidad/estado-reserva";
 
 const VALOR_ALQUILER_ENTRE_SEMANA = 100;
@@ -32,18 +31,22 @@ export class Reserva {
 
     private aplicarValorAlquiler(): void {
         switch (this.fechaReserva.getDay()) {
-          case 6: // Saturday
+            case 6: // Saturday
             this.valorAlquiler = VALOR_ALQUILER_SABADO;
             break;
-      
-          case 0: // Sunday
+        
+            case 0: // Sunday
             this.valorAlquiler = VALOR_ALQUILER_DOMINGO;
             break;
-      
-          default:
+        
+            default:
             this.valorAlquiler = VALOR_ALQUILER_ENTRE_SEMANA;
         }
-      }
+    }
+
+    cancelar(): void {
+        this.estado = EstadoReserva.CANCELADA;
+    }
 
     get getId(): number {
         return this.id;
