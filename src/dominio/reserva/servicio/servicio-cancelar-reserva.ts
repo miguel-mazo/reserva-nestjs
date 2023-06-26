@@ -8,10 +8,16 @@ export class ServicioCancelarReserva {
 
     async ejecutar(reserva: Reserva) {
 
+        if(reserva === null){
+            throw new ErrorDeNegocio(
+                "El número de reserva no existe",
+            );
+        }
+
         if(reserva.esCancelada()){
             throw new ErrorDeNegocio(
                 "No se puede cancelar una reserva en estado 'CANCELADA'",
-              );
+            );
         }
 
         reserva.cancelar();
