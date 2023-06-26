@@ -11,6 +11,6 @@ export class ManejadorCancelarReserva {
 
     async ejecutar(comandoCancelarReserva: ComandoCancelarReserva) {
         const reserva = await this.repositorioReserva.obtenerReserva(comandoCancelarReserva.idReserva);
-        await this._servicioCancelarReserva.ejecutar(new Reserva(reserva.getId, reserva.getIdCliente, reserva.getFechaReserva.toUTCString(), reserva.getValorAlquiler, reserva.getEstado));
+        await this._servicioCancelarReserva.ejecutar(reserva);
     }
 }

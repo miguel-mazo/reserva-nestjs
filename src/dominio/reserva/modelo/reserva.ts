@@ -78,4 +78,8 @@ export class Reserva {
     get getEstado(): EstadoReserva {
         return this.estado;
     }
+
+    esCancelada(): boolean {
+        return this.estado === EstadoReserva.CANCELADA;
+    }
 }
