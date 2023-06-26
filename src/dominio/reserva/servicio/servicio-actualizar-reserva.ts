@@ -1,15 +1,15 @@
-import { ComandoActualizarReserva } from "src/aplicacion/reserva/comando/actualizar-reserva.comando";
 import { RepositorioReserva } from "../puerto/repositorio/repositorio-reserva";
+import { SolicitudActualizacionReserva } from "src/infraestructura/reserva/entidad/solicitud-actualizacion-reserva";
 
 export class ServicioActualizarReserva {
 
     constructor(private readonly _repositorioReserva: RepositorioReserva){}
 
-    async ejecutar(comandoActualizarReserva: ComandoActualizarReserva) {
+    async ejecutar(solicitudActualizacionReserva: SolicitudActualizacionReserva) {
 
-        const reservaBaseDatos = await this._repositorioReserva.obtenerReserva(comandoActualizarReserva.idReserva);
+        const reservaBaseDatos = await this._repositorioReserva.obtenerReserva(solicitudActualizacionReserva.idReserva);
 
-        reservaBaseDatos.actualizar(comandoActualizarReserva);
+        reservaBaseDatos.actualizar(solicitudActualizacionReserva);
 
         await this._repositorioReserva.actualizarReserva(reservaBaseDatos);
     }

@@ -21,6 +21,7 @@ import { repositorioClienteProvider } from "src/infraestructura/cliente/proveedo
 import { ManejadorConsultarCliente } from "src/aplicacion/cliente/consulta/consultar-cliente-id.manejador";
 import { ClienteModule } from "src/infraestructura/cliente/cliente.module";
 import { ClienteEntidad } from "src/infraestructura/cliente/entidad/cliente.entidad";
+import { FabricaSolicitudActualizacionReserva } from "src/aplicacion/reserva/comando/solicitud-actualizacion-reserva.fabrica";
 
 @Module({
     imports: [TypeOrmModule.forFeature([ReservaEntidad]), ClienteModule, TypeOrmModule.forFeature([ClienteEntidad])],
@@ -38,6 +39,7 @@ import { ClienteEntidad } from "src/infraestructura/cliente/entidad/cliente.enti
         FabricaSolicitudReserva,
         ManejadorConsultarCliente,
         repositorioClienteProvider,
+        FabricaSolicitudActualizacionReserva,
     ],
     exports: [
         ServicioRegistrarReserva,
@@ -51,6 +53,7 @@ import { ClienteEntidad } from "src/infraestructura/cliente/entidad/cliente.enti
         RepositorioReserva,
         DaoReserva,
         FabricaSolicitudReserva,
+        FabricaSolicitudActualizacionReserva,
     ],
 })
 
