@@ -16,9 +16,14 @@ import { ManejadorCancelarReserva } from "src/aplicacion/reserva/comando/cancela
 import { ServicioActualizarReserva } from "src/dominio/reserva/servicio/servicio-actualizar-reserva";
 import { servicioActualizarReservaProveedor } from "./servicio/servicio-actualizar-reserva.proveedor";
 import { ManejadorActualizarReserva } from "src/aplicacion/reserva/comando/actualizar-reserva-manejador";
+import { FabricaSolicitudReserva } from "src/aplicacion/reserva/comando/solicitud-reserva.fabrica";
+import { repositorioClienteProvider } from "src/infraestructura/cliente/proveedor/repositorio/repositorio-cliente.proveedor";
+import { ManejadorConsultarCliente } from "src/aplicacion/cliente/consulta/consultar-cliente-id.manejador";
+import { ClienteModule } from "src/infraestructura/cliente/cliente.module";
+import { ClienteEntidad } from "src/infraestructura/cliente/entidad/cliente.entidad";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([ReservaEntidad])],
+    imports: [TypeOrmModule.forFeature([ReservaEntidad]), ClienteModule, TypeOrmModule.forFeature([ClienteEntidad])],
     providers: [
         { provide: ServicioRegistrarReserva, inject: [RepositorioReserva], useFactory: servicioRegistrarReservaProveedor },
         { provide: ServicioCancelarReserva, inject: [RepositorioReserva], useFactory: servicioCancelarReservaProveedor },
@@ -30,6 +35,9 @@ import { ManejadorActualizarReserva } from "src/aplicacion/reserva/comando/actua
         ManejadorActualizarReserva,
         ManejadorListarReservas,
         ManejadorConsultarReserva,
+        FabricaSolicitudReserva,
+        ManejadorConsultarCliente,
+        repositorioClienteProvider,
     ],
     exports: [
         ServicioRegistrarReserva,
@@ -42,6 +50,7 @@ import { ManejadorActualizarReserva } from "src/aplicacion/reserva/comando/actua
         ManejadorConsultarReserva,
         RepositorioReserva,
         DaoReserva,
+        FabricaSolicitudReserva,
     ],
 })
 

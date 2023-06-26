@@ -1,5 +1,6 @@
 import { ComandoActualizarReserva } from "src/aplicacion/reserva/comando/actualizar-reserva.comando";
 import { EstadoReserva } from "src/infraestructura/reserva/entidad/estado-reserva";
+import { SolicitudReserva } from "src/infraestructura/reserva/entidad/solicitud-reserva";
 
 const VALOR_ALQUILER_ENTRE_SEMANA = 100;
 const VALOR_ALQUILER_SABADO = 120;
@@ -28,6 +29,10 @@ export class Reserva {
             this.valorAlquiler = valorAlquiler;
             this.estado = estado;
         }
+    }
+
+    crear(solicitudReserva: SolicitudReserva): Reserva {
+        return new Reserva(null, solicitudReserva.idCliente, solicitudReserva.fechaReserva, null, null);
     }
 
     private aplicarValorAlquiler(): void {

@@ -1,4 +1,3 @@
-import { ReservaDto } from "src/aplicacion/reserva/consulta/dto/reserva.dto";
 import { Reserva } from "../../modelo/reserva";
 
 export abstract class RepositorioReserva {

@@ -16,8 +16,7 @@ export class RepositorioClienteMysql implements RepositorioCliente {
     return this.repositorio.findOne({ 
         where: { 
           id: id 
-        },
-        select: ["nombre"] 
+        }
       });
   }
 }

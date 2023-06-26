@@ -1,22 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { ServicioRegistrarReserva } from "src/dominio/reserva/servicio/servicio-registrar-reserva";
 import { ComandoRegistrarReserva } from "./registrar-reserva.comando";
-import { Reserva } from "src/dominio/reserva/modelo/reserva";
+import { FabricaSolicitudReserva } from "./solicitud-reserva.fabrica";
 
 @Injectable()
 export class ManejadorRegistrarReserva {
 
-    constructor(private _servicioRegistrarReserva: ServicioRegistrarReserva){}
+    constructor(private _fabricaSolicitudReserva: FabricaSolicitudReserva, private _servicioRegistrarReserva: ServicioRegistrarReserva){}
 
     async ejecutar(comandoRegistrarReserva: ComandoRegistrarReserva) {
-        await this._servicioRegistrarReserva.ejecutar(
-            new Reserva(
-                null,
-                comandoRegistrarReserva.idCliente,
-                comandoRegistrarReserva.fechaReserva,
-                null,
-                null,
-            ),
-        );
+        const solicitudReserva = await this._fabricaSolicitudReserva.crear(comandoRegistrarReserva);
+        await this._servicioRegistrarReserva.ejecutar(solicitudReserva);
     }
 }
